@@ -1,0 +1,32 @@
+<!-- student_report.html -->
+{% load static %}
+{% block title %} Student Report {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/student_report.css' %}">
+  <h1>Student Report</h1>
+  <h2>{{ request.user.username }}'s Test Scores in {{ classroom.name }}</h2>
+
+  <!-- Display Test Scores -->
+  <h3>Test Scores:</h3>
+  <ul>
+    {% for score in test_scores %}
+      <li>
+        {{ score.test.title }}: {{ score.score }}
+        <!-- Add link to view test report -->
+        <a href="{% url 'test_report' test_id=score.test.id %}">(View Report)</a>
+      </li>
+    {% endfor %}
+  </ul>
+  
+  <!-- Display average score -->
+  <br>
+  <p>Average Score: {{ average_score }}</p>
+
+  <!-- Display average time taken per question -->
+  <p>Average Time Taken per Question: {{ average_time_per_question }} seconds</p>
+
+  <!-- Display pie chart -->
+  <h2>Test Scores Distribution</h2>
+  <!-- <img src="{{ pie_chart }}" alt="Test Scores Pie Chart"> -->
+{% endblock %}

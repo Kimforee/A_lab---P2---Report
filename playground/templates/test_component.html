@@ -1,0 +1,16 @@
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/css/test_component.css' %}">
+<div class="low">
+    {% for test_info in test_data %}
+        <div class="card">
+            <h2>{{ test_info.test.title }}</h2>
+            <p>{{test_info.test.description}}</p>
+            <p>Number of Questions: {{ test_info.num_questions }}</p>
+            <form method="get" action="{% url 'take_test' classroom.id test_info.test.id 1 %}">
+                <button type="submit">Start Test</button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
