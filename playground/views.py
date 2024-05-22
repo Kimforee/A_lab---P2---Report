@@ -161,21 +161,21 @@ def classroom(request, pk):
     test_scores_values = [score.score for score in test_scores]
 
     # pie chart
-    # plt.figure(figsize=(8, 3))
-    # # plt.legend(loc="upper center", bbox_to_anchor=(1, 0.5), title="Test Titles")
-    # plt.pie(test_scores_values, labels=test_titles, autopct='%1.1f%%')
-    # plt.title('Test Scores Distribution')
-    # plt.axis('equal')
+    plt.figure(figsize=(8, 3))
+    # plt.legend(loc="upper center", bbox_to_anchor=(1, 0.5), title="Test Titles")
+    plt.pie(test_scores_values, labels=test_titles, autopct='%1.1f%%')
+    plt.title('Test Scores Distribution')
+    plt.axis('equal')
 
 
-    # # convert plot to bytes and embed in HTML
-    # buffer = BytesIO()
-    # plt.savefig(buffer, format='png')
-    # buffer.seek(0)
-    # image_base64 = base64.b64encode(buffer.getvalue()).decode()
-    # plt.close()
+    # convert plot to bytes and embed in HTML
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_base64 = base64.b64encode(buffer.getvalue()).decode()
+    plt.close()
 
-    # pie_chart = f'data:image/png;base64,{image_base64}'
+    pie_chart = f'data:image/png;base64,{image_base64}'
     
     context = {'classroom': classroom, 
                'classroom_messages': classroom_messages,
